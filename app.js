@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true // commented out currently
 // });
-mongoose.connect('mongodb://@localhost:27017/testeWebAPI', {
+mongoose.connect('mongodb://localhost:27017/testeWebAPI', {
     useNewUrlParser: true,
     useUnifiedTopology: true // commented out currently
 });
@@ -43,6 +43,7 @@ process.on('SIGINT', () => {
 
 // Load models
 const Mentions = require('./models/mentions');
+const Users = require('./models/users');
 
 
 // Load routes
@@ -51,5 +52,8 @@ app.use('/', indexRoutes);
 
 const mentionsRoutes = require('./routes/mentions-routes');
 app.use('/mentions', mentionsRoutes);
+
+const usersRoutes = require('./routes/user.routes');
+app.use('/user', usersRoutes);
 
 module.exports = app;
